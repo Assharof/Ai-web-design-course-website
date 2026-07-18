@@ -33,7 +33,7 @@ export const courseLessons: CourseLesson[] = [
   {
     number: 3,
     title: "AI Prompting",
-    duration: "18 min",
+    duration: "14 min",
     eyebrow: "Learn the language",
     description: "Write prompts that give AI clear context, constraints, and genuinely useful output.",
     videoId: "pRve2Z5srn4",
