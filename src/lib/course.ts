@@ -9,17 +9,6 @@ export type CourseLesson = {
   resources: { name: string; type: string; detail: string; url?: string }[];
 };
 
-const RESOURCE_URL =
-  "https://docs.google.com/document/d/1CprCDcetljv9e_3LMqOD0pNnQvLci-xWyrx7sfEOp7E/edit?usp=sharing";
-
-const resourceSet = (items: [string, string, string][]) =>
-  items.map(([name, type, detail]) => ({
-    name,
-    type,
-    detail,
-    url: RESOURCE_URL,
-  }));
-
 export const courseLessons: CourseLesson[] = [
   {
     number: 1,
@@ -29,7 +18,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Meet your course roadmap and build a confident foundation for creating with AI.",
     videoId: "zAFBXV2ZCEg",
     learn: ["How the course is structured", "The AI-first website workflow", "What you will publish by the end"],
-    resources: resourceSet([["Course roadmap", "PDF", "Your 30-day learning plan"], ["Workspace checklist", "PDF", "Set up before lesson two"], ["Community guide", "LINK", "Get the most from support"]]),
+    resources: [],
   },
   {
     number: 2,
@@ -39,7 +28,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Turn scattered inspiration into a visual direction your website can actually follow.",
     videoId: "gBFYkvBfBG8",
     learn: ["Collect reference material quickly", "Define an intentional visual language", "Translate mood into UI decisions"],
-    resources: resourceSet([["Mood board canvas", "FIGMA", "Editable starter board"], ["Style reference pack", "ZIP", "Curated visual inspiration"], ["Brand direction prompts", "PDF", "Questions to sharpen your taste"]]),
+    resources: [],
   },
   {
     number: 3,
@@ -53,14 +42,11 @@ export const courseLessons: CourseLesson[] = [
       {
         name: "Prompt library",
         type: "DOC",
-        detail: "copy-ready prompts",
+        detail: "Copy-ready prompts",
         url: "https://docs.google.com/document/d/1CprCDcetljv9e_3LMqOD0pNnQvLci-xWyrx7sfEOp7E/edit?usp=sharing",
       },
-     resources: resourceSet([
-  ["Prompt library", "DOC", "Copy-ready prompts"],
-  ["Prompt anatomy", "PDF", "The formula explained"],
-  ["Audit worksheet", "DOC", "Improve an existing prompt"],
-]),
+    ],
+  },
   {
     number: 4,
     title: "Building the Website Using AI",
@@ -69,7 +55,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Use your prompts and visual direction to generate a responsive, conversion-ready website.",
     videoId: "4lxX9Mtey7c",
     learn: ["Map a high-converting landing page", "Generate responsive sections faster", "Give AI production-ready instructions"],
-    resources: resourceSet([["Starter template", "ZIP", "Responsive page foundation"], ["Build prompts", "PDF", "Section-by-section commands"], ["Final source code", "ZIP", "Reference implementation"]]),
+    resources: [],
   },
   {
     number: 5,
@@ -79,7 +65,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Learn a calm, repeatable process for resolving layout, copy, and code issues.",
     videoId: "J6nP9ho58hE",
     learn: ["Read errors without panic", "Debug responsive layouts", "Ask AI for focused fixes"],
-    resources: resourceSet([["Debugging checklist", "PDF", "Find the signal faster"], ["Common fixes", "PDF", "12 fixes worth bookmarking"], ["QA template", "SHEET", "Test before launch"]]),
+    resources: [],
   },
   {
     number: 6,
@@ -89,7 +75,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Put your project under version control and make your work easy to share.",
     videoId: "xBQD0_7Addo",
     learn: ["Create a clean repository", "Commit with confidence", "Share a project professionally"],
-    resources: resourceSet([["Git cheat sheet", "PDF", "Every command in this lesson"], ["README template", "MD", "Make your repository shine"], ["Commit guide", "PDF", "Write helpful history"]]),
+    resources: [],
   },
   {
     number: 7,
@@ -99,7 +85,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Deploy your site to the web, connect a domain, and share it with the world.",
     videoId: "M7lc1UVf-VE",
     learn: ["Prepare a production build", "Deploy with Vercel", "Handle your launch checklist"],
-    resources: resourceSet([["Deployment guide", "PDF", "Launch in an afternoon"], ["Domain checklist", "PDF", "Before you connect DNS"], ["Launch copy", "DOC", "Announce your project"]]),
+    resources: [],
   },
   {
     number: 8,
@@ -109,7 +95,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Add conversion tracking correctly, verify events, and redeploy without breaking momentum.",
     videoId: "M7lc1UVf-VE",
     learn: ["Plan meaningful conversion events", "Install and verify a pixel", "Ship tracking safely"],
-    resources: resourceSet([["Pixel setup guide", "PDF", "Start tracking properly"], ["Event map", "SHEET", "Plan your funnel events"], ["Redeploy checklist", "PDF", "Ship safely after changes"]]),
+    resources: [],
   },
   {
     number: 9,
@@ -119,7 +105,7 @@ export const courseLessons: CourseLesson[] = [
     description: "Take the prompt library, templates, tools, and advanced resources into your next project.",
     videoId: "ScMzIvxBSi4",
     learn: ["Use your prompt library strategically", "Choose the right tool for the task", "Build your next project faster"],
-    resources: resourceSet([["Ultimate prompt library", "PDF", "50+ expert prompts"], ["Website templates", "ZIP", "Three launch-ready directions"], ["AI tools directory", "PDF", "A curated creative stack"]]),
+    resources: [],
   },
 ];
 
