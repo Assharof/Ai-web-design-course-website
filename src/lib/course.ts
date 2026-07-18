@@ -9,8 +9,16 @@ export type CourseLesson = {
   resources: { name: string; type: string; detail: string; url?: string }[];
 };
 
+const RESOURCE_URL =
+  "https://docs.google.com/document/d/1CprCDcetljv9e_3LMqOD0pNnQvLci-xWyrx7sfEOp7E/edit?usp=sharing";
+
 const resourceSet = (items: [string, string, string][]) =>
-  items.map(([name, type, detail]) => ({ name, type, detail }));
+  items.map(([name, type, detail]) => ({
+    name,
+    type,
+    detail,
+    url: RESOURCE_URL,
+  }));
 
 export const courseLessons: CourseLesson[] = [
   {
@@ -26,7 +34,7 @@ export const courseLessons: CourseLesson[] = [
   {
     number: 2,
     title: "Mood Boarding",
-    duration: "14 min",
+    duration: "10 min",
     eyebrow: "Find your direction",
     description: "Turn scattered inspiration into a visual direction your website can actually follow.",
     videoId: "gBFYkvBfBG8",
@@ -45,16 +53,18 @@ export const courseLessons: CourseLesson[] = [
       {
         name: "Prompt library",
         type: "DOC",
-        detail: "32 copy-ready prompts",
+        detail: "copy-ready prompts",
         url: "https://docs.google.com/document/d/1CprCDcetljv9e_3LMqOD0pNnQvLci-xWyrx7sfEOp7E/edit?usp=sharing",
       },
-      ...resourceSet([["Prompt anatomy", "PDF", "The formula explained"], ["Audit worksheet", "DOC", "Improve an existing prompt"]]),
-    ],
-  },
+     resources: resourceSet([
+  ["Prompt library", "DOC", "Copy-ready prompts"],
+  ["Prompt anatomy", "PDF", "The formula explained"],
+  ["Audit worksheet", "DOC", "Improve an existing prompt"],
+]),
   {
     number: 4,
     title: "Building the Website Using AI",
-    duration: "28 min",
+    duration: "12 min",
     eyebrow: "Build in public",
     description: "Use your prompts and visual direction to generate a responsive, conversion-ready website.",
     videoId: "4lxX9Mtey7c",
