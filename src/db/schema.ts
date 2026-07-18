@@ -5,9 +5,20 @@ export const profiles = pgTable("profiles", {
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
+
+  // New fields
+  isPaid: boolean("is_paid").notNull().default(false),
+  isAdmin: boolean("is_admin").notNull().default(false),
+
   avatarColor: text("avatar_color").notNull().default("#0f766e"),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+  }).notNull().defaultNow(),
+
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+  }).notNull().defaultNow(),
 });
 
 export const sessions = pgTable("sessions", {
@@ -37,3 +48,11 @@ export const lessonProgress = pgTable(
 
 export type Profile = typeof profiles.$inferSelect;
 export type LessonProgress = typeof lessonProgress.$inferSelect;
+
+export const purchases = pgTable("purchases", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  selarOrderId: text("selar_order_id"),
+  claimed: boolean("claimed").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});

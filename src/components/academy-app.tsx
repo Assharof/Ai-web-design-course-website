@@ -25,6 +25,7 @@ import {
   LogOut,
   Mail,
   Menu,
+  MessageCircle,
   MoreHorizontal,
   PanelLeftClose,
   PenLine,
@@ -184,20 +185,7 @@ function AuthScreen({
               {busy ? "Please wait..." : isForgot ? "Send recovery instructions" : isSignup ? "Create account" : "Sign in to my course"}
             </button>
           </form>
-          {!isForgot && !isSignup && (
-            <button
-              className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-[#ccece5] bg-[#f4fffc] px-4 py-3 text-sm font-bold text-[#0f766e] transition hover:bg-[#e5faf4]"
-              type="button"
-              disabled={busy}
-              onClick={() => {
-                setEmail("demo@assharof.academy");
-                setPassword("demo1234");
-                void onSubmit({ email: "demo@assharof.academy", password: "demo1234" });
-              }}
-            >
-              <Sparkles size={17} /> Explore the guided demo
-            </button>
-          )}
+          
           <div className="mt-6 border-t border-slate-100 pt-5 text-center text-sm text-slate-500">
             {isForgot ? (
               <button className="font-semibold text-[#0f766e] hover:underline" onClick={() => setMode("login")}>Back to sign in</button>
@@ -272,7 +260,7 @@ function Sidebar({
               const selected = active === item.id;
               return <button key={item.id} onClick={() => onNavigate(item.id)} className={`nav-item w-full ${selected ? "nav-item-active" : ""}`}><Icon size={19} strokeWidth={selected ? 2.3 : 2} />{item.label}{item.id === "bonuses" && <span className="ml-auto rounded-full bg-[#e7faf5] px-2 py-0.5 text-[10px] font-bold text-[#0f766e]">NEW</span>}</button>;
             })}
-          </nav>
+</nav>
         </div>
         <div className="mx-2 mt-8 rounded-2xl border border-[#d6f2ea] bg-[#f2fcf8] p-4">
           <div className="flex items-center gap-2 text-[#0f766e]"><Trophy size={17} /><span className="text-xs font-bold uppercase tracking-[.08em]">Course progress</span></div>
@@ -280,6 +268,15 @@ function Sidebar({
           <ProgressLine value={progressPercent(completed)} className="mt-2" />
           <button onClick={() => onNavigate("progress")} className="mt-3 text-xs font-bold text-[#0f766e] hover:underline">View learning plan</button>
         </div>
+        
+          <a href="https://chat.whatsapp.com/IQyZugTiXJ83M9KQnd9VTJ"
+          target="_blank"
+          rel="noreferrer"
+          className="mx-2 mt-4 flex items-center gap-3 rounded-2xl bg-[#18b779] px-4 py-3 text-sm font-bold text-white shadow-[0_10px_22px_rgba(24,183,121,.28)] transition hover:-translate-y-0.5 hover:bg-[#109667]"
+        >
+          <MessageCircle size={19} />
+          Join the community
+        </a>
         <div className="mt-auto border-t border-slate-100 pt-4">
           <button className={`nav-item w-full ${active === "profile" ? "nav-item-active" : ""}`} onClick={() => onNavigate("profile")}><UserRound size={19} />Profile</button>
           <button className="nav-item mt-1 w-full text-slate-500 hover:text-rose-600" onClick={onLogout}><LogOut size={19} />Log out</button>
@@ -288,7 +285,6 @@ function Sidebar({
     </>
   );
 }
-
 function Header({ user, onMenu, onProfile }: { user: User; onMenu: () => void; onProfile: () => void }) {
   return (
     <header className="sticky top-0 z-20 flex h-[76px] items-center justify-between border-b border-slate-200/80 bg-[#f8fbfa]/85 px-5 backdrop-blur-xl sm:px-8 lg:px-10">

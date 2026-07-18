@@ -6,7 +6,7 @@ export type CourseLesson = {
   eyebrow: string;
   videoId: string;
   learn: string[];
-  resources: { name: string; type: string; detail: string }[];
+  resources: { name: string; type: string; detail: string; url?: string }[];
 };
 
 const resourceSet = (items: [string, string, string][]) =>
@@ -41,7 +41,15 @@ export const courseLessons: CourseLesson[] = [
     description: "Write prompts that give AI clear context, constraints, and genuinely useful output.",
     videoId: "pRve2Z5srn4",
     learn: ["Use the Context–Goal–Constraint framework", "Iterate without losing your direction", "Create a reusable prompt system"],
-    resources: resourceSet([["Prompt library", "PDF", "32 copy-ready prompts"], ["Prompt anatomy", "PDF", "The formula explained"], ["Audit worksheet", "DOC", "Improve an existing prompt"]]),
+    resources: [
+      {
+        name: "Prompt library",
+        type: "DOC",
+        detail: "32 copy-ready prompts",
+        url: "https://docs.google.com/document/d/1CprCDcetljv9e_3LMqOD0pNnQvLci-xWyrx7sfEOp7E/edit?usp=sharing",
+      },
+      ...resourceSet([["Prompt anatomy", "PDF", "The formula explained"], ["Audit worksheet", "DOC", "Improve an existing prompt"]]),
+    ],
   },
   {
     number: 4,

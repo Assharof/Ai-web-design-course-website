@@ -3,7 +3,7 @@ import { promisify } from "util";
 import { and, eq, gt } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { db } from "@/db";
-import { lessonProgress, profiles, sessions, type Profile } from "@/db/schema";
+import { profiles, sessions, type Profile } from "@/db/schema";
 
 const scrypt = promisify(scryptCallback);
 const SESSION_COOKIE = "assharof_session";
@@ -41,42 +41,22 @@ function avatarFor(email: string) {
   return colors[numeric % colors.length];
 }
 
-export async function ensureDemoUser() {
-  const email = "demo@assharof.academy";
-  const existing = await db.query.profiles.findFirst({ where: eq(profiles.email, email) });
-  if (existing) return existing;
-
-  const id = `student_${randomBytes(12).toString("hex")}`;
-  const passwordHash = await hashPassword("demo1234");
-  await db.insert(profiles).values({
-    id,
-    name: "Sherif Ahmed",
-    email,
-    passwordHash,
-    avatarColor: "#0f766e",
-  });
-  await db.insert(lessonProgress).values(
-    [1, 2, 3].map((lessonNumber) => ({
-      userId: id,
-      lessonNumber,
-      completed: true,
-      completedAt: new Date(Date.now() - (4 - lessonNumber) * 86_400_000),
-      notes:
-        lessonNumber === 3
-          ? "The strongest prompts include a clear role, the audience, and the desired format."
-          : "",
-    })),
-  );
-  const created = await db.query.profiles.findFirst({ where: eq(profiles.id, id) });
-  if (!created) throw new Error("Could not create demo account");
-  return created;
-}
-
 export async function createSession(userId: string) {
+  // Remove any existing sessions for this user
+  await db.delete(sessions).where(eq(sessions.userId, userId));
+
+  // Create a fresh session
   const token = randomBytes(32).toString("hex");
   const expiresAt = new Date(Date.now() + THIRTY_DAYS);
-  await db.insert(sessions).values({ token, userId, expiresAt });
+
+  await db.insert(sessions).values({
+    token,
+    userId,
+    expiresAt,
+  });
+
   const cookieStore = await cookies();
+
   cookieStore.set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
